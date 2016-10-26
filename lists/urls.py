@@ -1,3 +1,4 @@
+
 from django.conf.urls import url
 
 from lists import views
@@ -8,4 +9,3 @@ urlpatterns = [
     url(r'^(\d+)/share$', views.share_list, name='share_list'),
     url(r'^users/(.+)/$', views.my_lists, name='my_lists'),
 ]
-
