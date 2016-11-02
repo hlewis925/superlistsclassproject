@@ -1,5 +1,7 @@
 import sys
+import unittest
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
+from django.db import models
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from unittest import skip
@@ -144,7 +146,7 @@ class ItemValidationTest(FunctionalTest):
     # She receives a similar warning on the list page
 
     # And she can correct it by filling some text in
-    self.fail('write me!')
+        self.fail('write me!')
     
 if __name__ == "__main__":
     unittest.main(warnings='ignore')

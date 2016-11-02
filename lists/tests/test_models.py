@@ -1,12 +1,13 @@
 
 from django.template.loader import render_to_string
 from django.core.urlresolvers import resolve
+from django.core.exceptions import ValidationError
 from django.http import HttpRequest
 from django.test import TestCase
 
 from lists.forms import ItemForm, EMPTY_ITEM_ERROR
 from lists.views import home_page
-from lists.models import Item, List
+from lists.models import Item, Lists
 
 class ItemModelTest(TestCase):
     def test_default_text(self):

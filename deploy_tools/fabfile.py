@@ -1,11 +1,11 @@
-om fabric.contrib.files import append, exists, sed
+from fabric.contrib.files import append, exists, sed
 from fabric.api import env, local, run
 import random
 
 REPO_URL = 'https://haleylewisschool.com/superlists-staging.ottg.eu'  
 
 def deploy():
-    site_folder = '/home/%s/sites/%s' % (env.user, env.host)
+    site_folder = '/home/%s/sites/%s' % (env.user, env.host)   
     source_folder = site_folder + '/source'
     _create_directory_structure_if_necessary(site_folder)
     _get_latest_source(source_folder)
@@ -51,12 +51,12 @@ def _update_virtualenv(source_folder):
 
 
 def _update_static_files(source_folder):
-    run('cd %s && ../virtualenv/bin/python3 manage.py collectstatic --noinput' % (
+    run('cd %s && ../virtualenv/venv/python3 manage.py collectstatic --noinput' % (
         source_folder,
     ))
 
 
 def _update_database(source_folder):
-    run('cd %s && ../virtualenv/bin/python3 manage.py migrate --noinput' % (
+    run('cd %s && ../virtualenv/venv/python3 manage.py migrate --noinput' % (
         source_folder,
     ))

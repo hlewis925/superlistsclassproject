@@ -1,5 +1,10 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>To-Do lists</title>
     <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="/static/base.css" rel="stylesheet">
@@ -8,21 +13,16 @@
 <body>
 <div class="container">
 
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3 jumbotron">
-        <div class="text-center">
-            <h1>{% block header_text %}{% endblock %}</h1>
-            <form method="POST" action="{% block form_action %}{% endblock %}">
-        		{{ form.text }}
-        		{% csrf_token %}
-        		{% if form.errors %}1
-           		 <div class="form-group has-error">
-                	<div class="help-block">{{ form.text.errors }}</div>2
-            	</div>
-        		{% endif %}
-    		</form>
-            </div>
-        </div>
+    <div class="navbar">
+        {% if user.is_authenticated %}
+            <p>Logged in as {{ user.email}}</p>
+            <p><a id="id_logout" href="{% url 'logout' %}">Log out</a></p>
+        {% else %}
+          <form method="POST" action ="{% url 'send_login_email' %}">
+            Enter email to log in: <input name="email" type="text" />
+            {% csrf_token %}
+          </form>
+        {% endif %}
     </div>
 
     <div class="row">
@@ -35,3 +35,4 @@
 </div>
 </body>
 </html>
+
