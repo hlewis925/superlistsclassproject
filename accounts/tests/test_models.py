@@ -3,12 +3,11 @@ from django.contrib import auth
 from accounts.models import Token
 User = auth.get_user_model()
 
-
 class UserModelTest(TestCase):
 
     def test_user_is_valid_with_email_only(self):
         user = User(email='a@b.com')
-        user.full_clean()  # should not raise
+        user.full_clean()   # should not raise
 
 
     def test_is_authenticated(self):
@@ -20,8 +19,11 @@ class UserModelTest(TestCase):
         user = User.objects.create(email='edith@example.com')
         user.backend = ''
         request = self.client.request().wsgi_request
-        auth.login(request, user)  # should not raise
+        auth.login(request, user)
 
+    def test_email_is_primary_key(self):
+        user = User()
+        self.assertFalse(hasattr(user, 'id'))
 
 
 class TokenModelTest(TestCase):
@@ -30,4 +32,3 @@ class TokenModelTest(TestCase):
         token1 = Token.objects.create(email='a@b.com')
         token2 = Token.objects.create(email='a@b.com')
         self.assertNotEqual(token1.uid, token2.uid)
-

@@ -11,7 +11,7 @@ class AuthenticateTest(TestCase):
         result = PasswordlessAuthenticationBackend().authenticate(
             'no-such-token'
         )
-        self.assertIsNone(result)
+            self.assertIsNone(result)
 
 
     def test_returns_new_user_with_correct_email_if_token_exists(self):
@@ -46,4 +46,3 @@ class GetUserTest(TestCase):
         self.assertIsNone(
             PasswordlessAuthenticationBackend().get_user('edith@example.com')
         )
-

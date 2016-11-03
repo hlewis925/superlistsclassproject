@@ -39,11 +39,11 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'lists',
-    'accounts',
     'functional_tests',
+    'accounts',
 )
 
-AUTH_USER_MODEL = 'accounts.ListUser'
+AUTH_USER_MODEL = 'accounts.User'
 AUTHENTICATION_BACKENDS = (
     'accounts.authentication.PasswordlessAuthenticationBackend',
 )
